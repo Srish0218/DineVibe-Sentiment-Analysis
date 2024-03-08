@@ -2,7 +2,7 @@
 
 import sqlite3
 
-DATABASE_FILE = "restaurant_owners.db"
+DATABASE_FILE = "restaurant_database.db"
 
 def create_table():
     conn = sqlite3.connect(DATABASE_FILE)
