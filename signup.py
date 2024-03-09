@@ -1,5 +1,6 @@
 # signup.py
-
+import logging
+from login import hash_password
 from database import add_owner
 
 def signup(username, password, restaurant_name):
@@ -12,7 +13,12 @@ def signup(username, password, restaurant_name):
     - restaurant_name (str): The name of the restaurant associated with the new user.
     """
     try:
-        add_owner(username, password, restaurant_name)  # In a real-world scenario, password should be hashed
+        hashed_password = hash_password(password)
+        add_owner(username, hashed_password, restaurant_name)
+        logging.info(f"User '{username}' signed up successfully.")
     except Exception as e:
-        # Add appropriate logging or exception handling here
-        print(f"Error during signup: {e}")
+        # Use the logging library for better control over logs
+        logging.error(f"Error during signup: {e}")
+
+# Example usage:
+# signup("new_user", "new_password", "New Restaurant")

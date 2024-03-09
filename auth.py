@@ -1,4 +1,4 @@
-# login_signup.py
+# auth.py
 
 import streamlit as st
 from login import login

@@ -9,11 +9,13 @@ import seaborn as sns
 import streamlit as st
 from nltk import PorterStemmer
 from nltk.corpus import stopwords
+from nltk import data
 
 from database import create_table, get_owner_by_username
+nltk.data.path.append("D:/Users/srish/PycharmProjects/MajorProject/SentimentAnalyzerApp/DineVibeSentiment/Lib/site-packages/nltk/data.py")
+
 
 pd.set_option('mode.use_inf_as_na', True)
-
 
 ps = PorterStemmer()
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -90,6 +92,8 @@ def visualize_sentiment_distribution_bar(df):
     plt.ylabel('Count')
     plt.title('Sentiment Distribution')
     st.pyplot(fig)
+
+
 def main_app():
     st.title("DineVibe Sentiment Analysis 🍽️😋")
     st.markdown("---")
@@ -159,8 +163,10 @@ def main_app():
             # Show instructions if checkbox is selected
             if show_instructions:
                 st.info(
-                    "Adding Reviews using excel import \n1. Select 'Import Excel File' in the app.\n2. Upload an Excel file "
-                    "containing the 'Review' and 'Rating' columns.\n3. Ensure the Excel file structure has two columns named "
+                    "Adding Reviews using excel import \n1. Select 'Import Excel File' in the app.\n2. Upload an "
+                    "Excel file"
+                    "containing the 'Review' and 'Rating' columns.\n3. Ensure the Excel file structure has two "
+                    "columns named"
                     "'Review' and 'Rating'.\n4. The app will process the reviews and provide sentiment predictions.")
 
             # Process the loaded Excel file
@@ -187,9 +193,10 @@ def main_app():
                             sentiment = 'Negative'
 
                         # Display result
-                        st.write(f"Review {i + 1}: {review}")
+                        st.write(f"Review { i + 1}: {review}")
                         st.write(
-                            f"Sentiment: {sentiment} :yum: | Rating: {rating}/5" if sentiment == 'Positive' else f"Sentiment: {sentiment} :broken_heart: | Rating: {rating}/5")
+                            f"Sentiment: {sentiment} :yum: | Rating: {rating}/5" if sentiment == 'Positive' else f""
+                            f"Sentiment: {sentiment} :broken_heart: | Rating: {rating}/5")
 
                         # Save results for visualization
                         results['Review'].append(review)
@@ -211,6 +218,7 @@ def main_app():
 
                 except Exception as e:
                     st.error(f"Error: {e}")
+
 
 # Add your main app logic and functions here
 

@@ -1,6 +1,7 @@
 # login.py
 
-from database import get_owner_by_username
+from database import get_owner_by_username, hash_password
+import logging
 
 def login(username, password):
     """
@@ -15,10 +16,10 @@ def login(username, password):
     """
     try:
         owner = get_owner_by_username(username)
-        if owner and owner[2] == password:  # owner[2] is the hashed password in real-world scenarios
+        if owner and owner[2] == hash_password(password):  # owner[2] is the hashed password in real-world scenarios
             return True
     except Exception as e:
         # Add appropriate logging or exception handling here
-        print(f"Error during login: {e}")
+        logging.error(f"Error during login: {e}")
 
     return False
