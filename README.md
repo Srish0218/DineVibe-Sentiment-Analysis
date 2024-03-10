@@ -1,4 +1,8 @@
 ﻿# DineVibe Sentiment Analysis
+
+> Facing Some issues in deploying as transitioning to MySQL to enhance scalability.
+> Issues will be resolved soon in 2 3 days (as of 10 March 2024)
+ 
 > **Project Database Update:**
 > 
 > This project is currently utilizing SQLite and performs optimally. For those interested in using MySQL with Workbench, kindly navigate to [EpicureGlow Sentiment Analysis](https://github.com/Srish0218/EpicureGlowSentiment).
