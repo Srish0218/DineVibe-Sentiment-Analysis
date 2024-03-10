@@ -1,4 +1,4 @@
-﻿# DineVibe Sentiment Analysis
+﻿# MoodMunchInsights Analyser
 
 > Facing Some issues in deploying as transitioning to MySQL to enhance scalability.
 > Issues will be resolved soon in 2 3 days (as of 10 March 2024)
@@ -29,7 +29,7 @@
 >Best regards,
 
 
-DineVibe Sentiment Analysis is a Streamlit-based web application designed for restaurant owners to analyze and visualize customer sentiments based on reviews. The application employs Natural Language Processing (NLP) techniques to determine sentiments and provides insightful visualizations.
+MoodMunchInsights Analysis is a Streamlit-based web application designed for restaurant owners to analyze and visualize customer sentiments based on reviews. The application employs Natural Language Processing (NLP) techniques to determine sentiments and provides insightful visualizations.
 
 ## Overview
 
@@ -49,15 +49,16 @@ To run the DineVibe Sentiment Analysis application, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Srish0218/DineVibe-Sentiment-Analysis.git
-cd DineVibe-Sentiment-Analysis
+git clone https://github.com/Srish0218/MoodMunchInsights.git
+cd MoodMunchInsights-Analysis
 ```
 
 ### 2. Create and Activate Virtual Environment
 
 ```bash
 python -m venv myvenv
-source venv/bin/activate  # On Windows, use: myvenv\Scripts\activate
+# On Mac, use : source venv/bin/activate
+# On Windows, use: myvenv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
@@ -104,7 +105,7 @@ streamlit run main_app.py
 The project structure is organized as follows:
 
 ```plaintext
-DineVibe-Sentiment-Analysis/
+MoodMunchInsights/
 │
 ├── auth.py
 ├── Book1.xlsx (Sample Excel file for importing reviews)
@@ -134,11 +135,11 @@ DineVibe-Sentiment-Analysis/
 
 ## Demo
 
-For a live demo, visit the [DineVibe Sentiment Analysis](https://srish-dinevibesentiment.streamlit.app/) website.
+For a live demo, visit the [DineVibe Sentiment Analysis](https://srish-MoodMunchInsights.streamlit.app/) website.
 
 ---
 
-Feel free to contribute to this project or report any issues by opening an [issue](https://github.com/Srish0218/DineVibe-Sentiment-Analysis/issues) on GitHub. We welcome your feedback and contributions!
+Feel free to contribute to this project or report any issues by opening an [issue](https://github.com/Srish0218/MoodMunchInsights/issues) on GitHub. We welcome your feedback and contributions!
 
 ## License
 
