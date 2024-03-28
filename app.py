@@ -14,9 +14,7 @@ from streamlit_extras.let_it_rain import rain
 # Set page title and favicon
 st.set_page_config(
     page_title="MoodMunch Insights App 🍽️😋",
-    page_icon="🍽️",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_icon="🍽️"
 )
 
 # Add nltk data path
