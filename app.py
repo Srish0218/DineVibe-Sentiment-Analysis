@@ -258,5 +258,49 @@ def main_app():
                 st.error(f"Error: {e}")
 
 
+footer = """<style>
+a:link , a:visited{
+color: black;
+font-weight: bold;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:hover,  a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
+
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+color: white;
+text-align: center;
+z-index:100;
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(90%);
+border-radius: 10px;
+box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.15);
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+        }
+}
+</style>
+
+<div class="footer">
+<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://github.com/Srish0218" target="_blank">Srishti Jaitly 🌸</a></p>
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main_app()
