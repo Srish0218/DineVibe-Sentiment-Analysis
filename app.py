@@ -9,9 +9,11 @@ import seaborn as sns
 import streamlit as st
 from nltk import PorterStemmer
 from nltk.corpus import stopwords
+from streamlit_extras.let_it_rain import rain
 
 # Add nltk data path
-nltk.data.path.append("D:/Users/srish/PycharmProjects/MajorProject/SentimentAnalyzerApp/DineVibeSentiment/Lib/site-packages/nltk")
+nltk.data.path.append(
+    "D:/Users/srish/PycharmProjects/MajorProject/SentimentAnalyzerApp/DineVibeSentiment/Lib/site-packages/nltk")
 
 # Set pandas option
 pd.set_option('mode.use_inf_as_na', True)
@@ -54,7 +56,7 @@ def analyze_sentiment(review):
 # Function to visualize rating distribution using line chart
 def visualize_rating_distribution(df):
     width1 = 8
-    height1=6
+    height1 = 6
     fig, ax = plt.subplots(figsize=(width1, height1))
     sns.lineplot(x='Rating', y='Count', data=df.groupby('Rating').size().reset_index(name='Count'), ax=ax)
     plt.xlabel('Rating')
@@ -74,6 +76,7 @@ def visualize_sentiment_distribution_bar(df):
     plt.title('Sentiment Distribution')
     st.pyplot(fig)
 
+
 # Function to visualize sentiment distribution using pie chart
 def visualize_sentiment_distribution_pie(df):
     fig1, ax1 = plt.subplots()
@@ -92,6 +95,7 @@ def visualize_sentiment_distribution_horizontal_bar(df):
     plt.title('Sentiment Distribution (Horizontal Bar Chart)')
     st.pyplot(fig)
 
+
 # Function to visualize sentiment distribution using heatmap
 def visualize_sentiment_distribution_heatmap(df):
     heatmap_data = pd.crosstab(df['Rating'], df['Sentiment'])
@@ -104,6 +108,7 @@ def visualize_sentiment_distribution_heatmap(df):
 
 
 def main_app():
+    global review, original_review, sentiment
     st.title("MoodMunch Insights App 🍽️😋")
     st.markdown("---")
 
@@ -124,25 +129,54 @@ def main_app():
             if user_input:
                 st.success("Sentiment Analysis Result:")
                 reviews = user_input.split('\n') if review_type == "Multi-Line Reviews" else [user_input]
+
                 results = {'Review': [], 'Sentiment': []}
                 for i, review in enumerate(reviews):
                     original_review = review
-                    sentiment = 'Positive' if analyze_sentiment(review) == 1 else 'Negative'
-
-                    st.write(f"Review {i + 1}: {original_review}")
-                    st.write(f"Sentiment: {sentiment} :yum:" if sentiment == 'Positive' else f"Sentiment: {sentiment} :broken_heart:")
+                    sentiment = 'Positive 😋' if analyze_sentiment(review) == 1 else 'Negative 💔'
 
                     results['Review'].append(original_review)
                     results['Sentiment'].append(sentiment)
 
-                col1, col2 = st.columns(2)
+                # Convert results to DataFrame
+                df_results = pd.DataFrame(results)
 
-                with col1:
-                    with st.expander("Sentiment Distribution (Pie Chart)"):
-                        visualize_sentiment_distribution_pie(pd.DataFrame(results))
-                with col2:
-                    with st.expander("Sentiment Distribution (Bar Chart)"):
-                        visualize_sentiment_distribution_bar(pd.DataFrame(results))
+                if review_type == "Multi-Line Reviews":
+                    # Display DataFrame
+                    st.write(df_results)
+
+                    positive_count = results['Sentiment'].count('Positive 😋')
+                    negative_count = results['Sentiment'].count('Negative 💔')
+                    total_reviews = len(results['Sentiment'])
+                    positive_percentage = (positive_count / total_reviews) * 100
+                    negative_percentage = (negative_count / total_reviews) * 100
+
+                    if positive_percentage >= 50:
+                        rain(emoji="😋", font_size=34, falling_speed=5, animation_length=1)
+                    else:
+                        rain(emoji="💔", font_size=34, falling_speed=5, animation_length=1)
+
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write(f"Percentage of Positive Sentiment: {positive_percentage:.2f}%")
+                        with st.expander("Sentiment Distribution (Pie Chart)"):
+                            visualize_sentiment_distribution_pie(pd.DataFrame(results))
+                    with col2:
+                        st.write(f"Percentage of Negative Sentiment: {negative_percentage:.2f}%")
+                        with st.expander("Sentiment Distribution (Bar Chart)"):
+                            visualize_sentiment_distribution_bar(pd.DataFrame(results))
+                else:
+                    if analyze_sentiment(review) == 0:
+                        st.write(f"Review: {original_review}")
+                        rain(emoji="💔", font_size=34, falling_speed=5, animation_length=1)
+                        st.write(f"Sentiment: {sentiment}", icon='💔')
+                    else:
+                        st.write(f"Review: {original_review}")
+                        rain(emoji="😋", font_size=34, falling_speed=5, animation_length=1)
+                        st.write(f"Sentiment: {sentiment}", icon='😋')
+
+
+
 
             else:
                 st.warning("Please enter a review.")
@@ -177,13 +211,26 @@ def main_app():
                 df_results = pd.DataFrame(results)
                 st.write(df_results)
 
+                positive_count_excel = df_results['Sentiment'].value_counts().get('Positive 😋', 0)
+                negative_count_excel = df_results['Sentiment'].value_counts().get('Negative 💔', 0)
+                total_reviews_excel = len(df_results)
+                positive_percentage_excel = (positive_count_excel / total_reviews_excel) * 100
+                negative_percentage_excel = (negative_count_excel / total_reviews_excel) * 100
+
+                if positive_percentage_excel >= 50:
+                    rain(emoji="😋", font_size=34, falling_speed=5, animation_length=1)
+                else:
+                    rain(emoji="💔", font_size=34, falling_speed=5, animation_length=1)
+
                 col1, col2 = st.columns(2)
 
                 with col1:
+                    st.write(f"Percentage of Positive Sentiment (Excel): {positive_percentage_excel:.2f}%")
                     with st.expander("Rating Distribution"):
                         visualize_rating_distribution(df)
 
                 with col2:
+                    st.write(f"Percentage of Negative Sentiment (Excel): {negative_percentage_excel:.2f}%")
                     with st.expander("Sentiment Distribution (Bar Chart)"):
                         visualize_sentiment_distribution_bar(pd.DataFrame(results))
 
