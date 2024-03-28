@@ -3,7 +3,7 @@
 
 > **Project Database Update:**
 > 
-> This project is currently doesn't utilize any database and performs optimally. For those interested in using MySQL with Workbench, kindly wait as I will be using database gor restaurant owner to login, kindly wait navigate to [EpicureGlow Sentiment Analysis](https://github.com/Srish0218/EpicureGlowSentiment). Database is added but facing issues in deploying, presently it is in streamlit but will use flask and mysql.
+> This project is currently doesn't utilize any database and performs optimally. For those interested in using MySQL with Workbench, kindly wait as I will be using database gor restaurant owner to login, kindly wait navigate to [EpicureGlowSentiment](https://github.com/Srish0218/EmoEpicure)). Database is added but facing issues in deploying, presently it is in streamlit but will use flask and mysql.
 >
 >The project is currently undergoing enhancements, primarily focusing on transitioning to MySQL for improved scalability and additional features. While the core logic remains unchanged, this update aims to provide a more robust and versatile solution.
 >
