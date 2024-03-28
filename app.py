@@ -11,6 +11,14 @@ from nltk import PorterStemmer
 from nltk.corpus import stopwords
 from streamlit_extras.let_it_rain import rain
 
+# Set page title and favicon
+st.set_page_config(
+    page_title="MoodMunch Insights App 🍽️😋",
+    page_icon="🍽️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # Add nltk data path
 nltk.data.path.append(
     "D:/Users/srish/PycharmProjects/MajorProject/SentimentAnalyzerApp/DineVibeSentiment/Lib/site-packages/nltk")
